@@ -29,15 +29,10 @@ if model_to_profile == "lenet":
             x = self.softmax(x)
             return x
 
-    # LeNet
-    #model = LeNet()
-    #model.to(device)
+    model = LeNet()
+    model.to(device)
 
-    #layer1 = pickle.load(open("fc_1.p", "rb"))
-    #layer2 = pickle.load(open("fc_2.p", "rb"))
-    #layer3 = pickle.load(open("fc_3.p", "rb"))
-
-    #print(len(layer1), len(layer1[0]), len(layer2), len(layer2[0]), len(layer3), len(layer3[0]))
+    layers = [pickle.load(open("fc_1.p", "rb")), pickle.load(open("fc_2.p", "rb")), pickle.load(open("fc_3.p", "rb"))]
 
 elif model_to_profile == "GPT":
     # GPT-2
