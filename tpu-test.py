@@ -56,6 +56,15 @@ elif model_to_profile == "GPT":
 
 elif model_to_profile == "alexnet":
     model = models.alexnet(pretrained=True).to(device)
+
+elif model_to_profile == "VGG-11":
+    model = models.vgg11(pretrained=True).to(device)
+
+elif model_to_profile == "VGG-16":
+    model = models.vgg16(pretrained=True).to(device)
+    
+elif model_to_profile == "VGG-19":
+    model = models.vgg19(pretrained=True).to(device)
     
 def get_dummy_input(model_type):
     '''
