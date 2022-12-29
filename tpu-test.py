@@ -81,10 +81,10 @@ with torch.no_grad():
      start = time.time()
      _ = model(dummy_input)
      #nference_time = time.perfcounter() - start
-    inference_time = time.time() - start
-    #_ = model(**dummy_input)
-    # WAIT FOR GPU SYNC
-    timings[rep] = inference_time
+     inference_time = time.time() - start
+     #_ = model(**dummy_input)
+     # WAIT FOR GPU SYNC
+     timings[rep] = inference_time
 mean_syn = np.sum(timings) / repetitions
 std_syn = np.std(timings)
 #print(timings)
