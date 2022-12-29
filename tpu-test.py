@@ -70,7 +70,7 @@ def get_dummy_input(model_type):
     '''
     random rgb image for CV input
     '''
-    if model_type == 'alexnet' or model_type == 'lenet':
+    if model_type in ['lenet', 'alexnet', 'VGG-11', 'VGG-16', 'VGG-19']:
         return torch.randn(1, 3,224,224,dtype=torch.float).to(device)
     elif model_type == 'GPT':
         return tokenizer(get_random_string(50), return_tensors='pt').to(device)
@@ -79,7 +79,7 @@ def warm_up(model_type):
     '''
     warm up GPU
     '''
-    if model_type == 'alexnet' or model_type == 'lenet':
+    if model_type in ['lenet', 'alexnet', 'VGG-11', 'VGG-16', 'VGG-19']:
         for i in range(100):
             _ = model(dummy_input)
     elif model_type == 'GPT':
@@ -90,7 +90,7 @@ def infer(model_type):
     '''
     run one inference
     '''
-    if model_type == 'alexnet' or model_type == 'lenet':
+    if model_type in ['lenet', 'alexnet', 'VGG-11', 'VGG-16', 'VGG-19']:
         _ = model(dummy_input)
     elif model_type == 'GPT':
         _ = model(**dummy_input)
