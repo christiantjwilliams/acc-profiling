@@ -68,8 +68,10 @@ def get_dummy_input(model_type):
     '''
     random rgb image for CV input
     '''
-    if model_type in ['lenet', 'alexnet', 'VGG-11', 'VGG-16', 'VGG-19']:
+    if model_type in ['alexnet', 'VGG-11', 'VGG-16', 'VGG-19']:
         return torch.randn(1, 3,224,224,dtype=torch.float).to(device)
+    elif model_type == 'lenet:
+        return torch.randn(1, 3,784,784,dtype=torch.float).to(device)
     elif model_type == 'GPT':
         return tokenizer(get_random_string(50), return_tensors='pt').to(device)
 
