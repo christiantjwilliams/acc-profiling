@@ -11,28 +11,31 @@ import sys
 print('if stalls here, check tpu ip address')
 device = xm.xla_device()
 
-model_to_profile = "alexnet"
+model_to_profile = "lenet"
 
 if model_to_profile == "lenet":
     class LeNet(torch.nn.Module):
         def __init__(self):
             super(LeNet, self).__init__()
-            self.linear1 = torch.nn.Linear(100, 200)
+            self.linear1 = torch.nn.Linear(784, 300)
             self.activation = torch.nn.ReLU()
-            self.linear2 = torch.nn.Linear(200, 10)
+            self.linear2 = torch.nn.Linear(300, 100)
             self.softmax = torch.nn.Softmax()
+            self.linear3 = torch.nn.Linear(100, 10)
 
         def forward(self, x):
             x = self.linear1(x)
             x = self.activation(x)
             x = self.linear2(x)
             x = self.softmax(x)
+            x = self.linear3(x)
             return x
 
     model = LeNet()
     model.to(device)
-
-    layers = [pickle.load(open("fc_1.p", "rb")), pickle.load(open("fc_2.p", "rb")), pickle.load(open("fc_3.p", "rb"))]
+    
+    for i in range(1, 4):
+        model.state_dict[f'layer{i}.weight'] = pickle.load(open(f"fc_{i}.p", "rb"))
 
 elif model_to_profile == "GPT":
     # GPT-2
