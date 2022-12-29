@@ -35,7 +35,7 @@ if model_to_profile == "lenet":
     model.to(device)
     
     for i in range(1, 4):
-        model.state_dict[f'layer{i}.weight'] = pickle.load(open(f"fc_{i}.p", "rb"))
+        model.state_dict()[f'layer{i}.weight'] = pickle.load(open(f"fc_{i}.p", "rb"))
 
 elif model_to_profile == "GPT":
     # GPT-2
