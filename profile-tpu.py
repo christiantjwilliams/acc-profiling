@@ -11,7 +11,7 @@ import sys
 print('if stalls here, check tpu ip address')
 device = xm.xla_device()
 
-model_to_profile = "lenet"
+model_to_profile = "alexnet"
 
 if model_to_profile == "lenet":
     class LeNet(torch.nn.Module):
